@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "8c570a0b-f369-4591-89eb-a25ad216193e",
+		"name": "Search-Fly Today",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44543477",
+		"_collection_link": "https://www.postman.com/neginrezaei/workspace/task/collection/44543477-8c570a0b-f369-4591-89eb-a25ad216193e?action=share&source=collection_link&creator=44543477"
+	},
+	"item": [
+		{
+			"name": "API Response Tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// تست اول::بررسی استتیوس 200 می باشد\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// تست دوم: ریسپانس تایم 1.5 می باشد \r",
+							"pm.test(\"Response time is less than 1.5s\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"// تست 3: شماره اولین پرواز در یک متغیر ذخیره می شود\r",
+							"pm.test(\"Save the firstFlightNumber in a variable\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    let firstFlightNumber = jsonData.pricedItineraries[0].originDestinationOptions[0].flightSegments[0].flightNumber;\r",
+							"    pm.environment.set(\"firstFlightNumber\", firstFlightNumber);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-token",
+						"value": "6b683443786c7476696a316849446a4d557631477a49567934566674356751676167497a41456c475943366d723555736675365273304c474e516f6c39477338",
+						"type": "text"
+					},
+					{
+						"key": "x-app",
+						"value": "www.flytoday.ir",
+						"type": "text"
+					},
+					{
+						"key": "origin",
+						"value": "https://www.flytoday.ir",
+						"type": "text"
+					},
+					{
+						"key": "referer",
+						"value": "https://www.flytoday.ir/",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"pricingSourceType\": 0,\r\n  \"adultCount\": 1,\r\n  \"childCount\": 0,\r\n  \"infantCount\": 0,\r\n  \"isJalali\": true,\r\n  \"originDestinationInformations\": [\r\n    {\r\n      \"departureDateTime\": \"2025-06-29\",\r\n      \"originLocationCode\": \"THR\",\r\n      \"originType\": \"City\",\r\n      \"destinationLocationCode\": \"MHD\",\r\n      \"destinationType\": \"City\"\r\n    }\r\n  ],\r\n  \"travelPreference\": {\r\n    \"cabinType\": \"Y\",\r\n    \"maxStopsQuantity\": \"All\",\r\n    \"airTripType\": \"OneWay\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flytoday.ir/api/V1/flight/search",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flytoday",
+						"ir"
+					],
+					"path": [
+						"api",
+						"V1",
+						"flight",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Flights - Valid Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-token",
+						"value": "6b683443786c7476696a316849446a4d557631477a49567934566674356751676167497a41456c475943366d723555736675365273304c474e516f6c39477338",
+						"type": "text"
+					},
+					{
+						"key": "x-app",
+						"value": "www.flytoday.ir",
+						"type": "text"
+					},
+					{
+						"key": "origin",
+						"value": "https://www.flytoday.ir",
+						"type": "text"
+					},
+					{
+						"key": "referer",
+						"value": "https://www.flytoday.ir/",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"pricingSourceType\": 0,\r\n  \"adultCount\": 1,\r\n  \"childCount\": 0,\r\n  \"infantCount\": 0,\r\n  \"isJalali\": true,\r\n  \"originDestinationInformations\": [\r\n    {\r\n      \"departureDateTime\": \"{{date}}\",\r\n      \"originLocationCode\": \"{{origin}}\",\r\n      \"originType\": \"City\",\r\n      \"destinationLocationCode\": \"{{destination}}\",\r\n      \"destinationType\": \"City\"\r\n    }\r\n  ],\r\n  \"travelPreference\": {\r\n    \"cabinType\": \"Y\",\r\n    \"maxStopsQuantity\": \"All\",\r\n    \"airTripType\": \"OneWay\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flytoday.ir/api/V1/flight/search",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flytoday",
+						"ir"
+					],
+					"path": [
+						"api",
+						"V1",
+						"flight",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
