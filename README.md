@@ -23,3 +23,10 @@ This project includes an API test collection developed in Postman for testing th
 - Postman Test Scripts (JavaScript)
 - Collection Runner
 - Data-driven testing (CSV)
+
+## 📸 Sample Test Result
+This screenshot shows successful execution of API test cases in Postman.
+
+![Test Result](result.png)
+![Test Result](result1.png)
+![Test Result](result2.png)
