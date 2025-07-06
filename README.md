@@ -1,4 +1,4 @@
-# 🧪 FlyToday Flight Search API Test – Postman
+# 🧪 FlyToday Domestic Flight Search API Test – Postman
 
 This project includes an API test collection developed in Postman for testing the domestic flight search on [FlyToday](https://www.flytoday.ir/).
 
